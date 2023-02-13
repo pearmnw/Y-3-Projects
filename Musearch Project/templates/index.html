@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <title>Muserach</title>
+        <!--JQuery-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- Ajax -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <!--  Load CSS in Flask with html-->
+        <link rel="stylesheet" href="/static/decorate.css">
+    </head>
+
+    <body>
+
+        <form class="Main" action="POST">
+            <div class="Searchbar">
+                <h1 class="Logotext">Music Search Engine</h1>
+                <input class="search-box" aria-describedby="search-title" placeholder="Enter MusicName/Artist/Genre/Track/Release date/Lyrics">
+            </div>
+        </form>
+
+        <table class="results table">
+        </table>
+
+<!--  Load JavaScript in Flask with html-->
+<!-- The Script and function that make result show up realtime -->
+    <script>
+        $(document).ready(function() {
+        let debounce;
+        $('.search-box').on('keydown', function (e) { 
+            clearTimeout(debounce)
+            debounce = setTimeout(() => {
+                    getAutoComplete();  
+            }, 300);
+        })
+        })
+    
+        function getAutoComplete() {
+            const query = $('.search-box').val();
+            fetch(`http://127.0.0.1:5000/search?q=${encodeURIComponent(query.trim())}`)
+            .then((resp) => resp.json())
+            .then((data) => {
+                    $('.results').empty();
+                    $('.results').append(`
+                        <!--<thead class="table-dark">
+                            <tr>
+                                <th scope="col" class="name">music_name</th>
+                                <th scope="col" class="artist">music_artist</th>
+                                <th scope="col" class="genre">music_genre</th>
+                                <th scope="col" class="track">music_track</th>
+                                <th scope="col" class="release">music_release</th>
+                                <th scope="col" class="lyrics">music_lyrics</th>
+                                <th scope="col" class="producer">music_producer</th>
+                                <th scope="col" class="writer">music_writer</th>
+                            </tr>
+                        </thead>-->
+                    `)
+                    for (let i = 0; i < data.length; i++) {
+                            $('.results').append(`
+                            <div class = "container">
+                                <div class = "container2">
+                                    <div class="name">${data[i].music_name}</div>
+                                    <div class="artist">${data[i].music_artist}</div>
+                                    <table class = table>
+                                        <tr>
+                                            <td>GENRE</td>
+                                            <td>${data[i].music_genre}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>TRACK</td>
+                                            <td>${data[i].music_track}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>RELEASE</td>
+                                            <td>${data[i].music_release}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PRODUCER</td>
+                                            <td>${data[i].music_producer}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>WRITER</td>
+                                            <td>${data[i].music_writer}</td>
+                                        </tr>
+                                    </table>
+                                    <!--
+                                    <div class="name">${data[i].music_name}</div>
+                                    <div class="artist">${data[i].music_artist}</div>
+                                    <div class="genre">${data[i].music_genre}</div>
+                                    <div class="track">${data[i].music_track}</div>
+                                    <div class="release">${data[i].music_release}</div>
+                                    <div class="producer">${data[i].music_producer}</div>
+                                    <div class="writer">${data[i].music_writer}</div>
+                                    -->
+                                </div>
+
+                                <div class = "container3">
+                                    <div class = "lyrics_head"> Lyrics </div>
+                                    <div class="lyrics">${data[i].music_lyrics}</div>
+                                </div>
+                            </div>
+                            
+                            `)
+                    }
+                    })
+        }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,129 @@
+body{
+    width: 100%;
+    background-image: linear-gradient(to right, #961414 0%, #ac2020 15%, #961414 40%);
+}
+
+.main{
+
+    display: block;
+    width: 100%;
+    height: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
+.searchbar{
+    width: 80%;
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logo{
+    width: 50%;
+    height: 20%;
+    background-image: url("logo.png");
+}
+
+.Logotext{
+    font-size: 3vw;
+    background: linear-gradient(to right, #f0d131 30%,#f5df72 35%, #f0d131 45%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+    font-family: 'Georgia';
+    text-shadow: 0px 0px 5px #fbeead7d;
+}
+
+.search-box{
+    padding: 15px;
+    padding-left: 5%;
+    padding-right: 55%;            
+	font-family: Georgia;
+    font-size: 22px;    
+	background: rgb(255, 255, 255);        
+    border-radius: 30px;
+}
+
+.search-box:hover{
+    box-shadow: 0px 0px 20px #f0d131;
+}
+
+.container{
+    margin: auto;
+    background: #ffffff;
+    width: 80%;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5%;
+    overflow: hidden;
+    box-shadow: 5px 5px 20px #630f0f;
+    border-radius: 5px;
+
+}
+.container2{
+    background-color: #710909;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.name{
+    
+    font-size: 4vw;
+    background: linear-gradient(to right, #f0d131 0%,#f5df72 20%, #f0d131 50%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+    font-family: fantasy;
+}
+
+.artist{
+    font-size: 1.5vw;
+    color: #f7e692;
+    font-family: sans-serif;
+}
+
+.container2 .table{
+    height: auto;
+    width: 100%;
+    vertical-align: top;
+    color: #fbeead;
+}
+
+.container3{
+    background-color: #ffffff;
+    width: 70%;
+    overflow: scroll;
+}
+
+.lyrics_head{
+    text-align: center;
+    font-size: 2vw;
+    font-family: fantasy;
+    background: linear-gradient(to right, #f0d131 0%,#f5df72 20%, #f0d131 50%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+
+}
+
+.lyrics{
+    padding: 3%;
+}
+
+.container3::-webkit-scrollbar {
+    width: 5px;               /* width of the entire scrollbar */
+}
+  
+.container3::-webkit-scrollbar-track {
+    background: #ffffff;        /* color of the tracking area */
+}
+  
+.container3::-webkit-scrollbar-thumb {
+   background-color: #f0d131;    /* color of the scroll thumb */
+   border-radius: 20px;       /* roundness of the scroll thumb */
+}
+
